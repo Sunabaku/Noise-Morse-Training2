@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Noise Morse Training</title>
+</head>
+
+<body>
+  <div id="settings">
+    <label>
+    Morse Volume
+    <input 
+        id = "morseVolumeSlider"
+        type = "range"
+        min = "0"
+        max = "1"
+        step = "0.05"
+        value= "0.3"
+    >
+    </label>
+
+    <label>
+    Noise Volume
+    <input 
+        id = "noiseVolumeSlider"
+        type = "range"
+        min = "0"
+        max = "1"
+        step = "0.05"
+        value= "0.3"
+    >
+    </label>
+
+    <label>
+      wpm(speed) <input type="number" id="wpmSetting" value="20" min="1" max="40"/>
+    </label>
+    <label>
+      Frequency(Hz) <input type="number" id="frequencySetting" value="600" min="1" max="1200">
+    </label>
+    <button id="startButton">Start</button><br>
+  </div>
+
+  <div class="hidden" id="trainingGroup">
+    <button id="playBtn">Play</button><br>
+    Your answer is : <input type="text" id="userAnsInput" />
+    <button id="submitButton">Submit</button><br>
+
+  </div>
+
+  <div class="hidden" id="answerDisplayGroup">
+    Your Answer : <span id="userAnsDisplay"></span> <br>
+    Answer   : <span id="ansDisplay"></span> <br>
+
+    <button id="nextButton">Next</button>
+    
+  </div>
+
+  <div class="hidden" id="resultGroup">
+    Result : <span id="resultNum"></span> / 5
+    <button id="restartButton">Restart</button>
+  </div>
+
+  <script src="./noisemorse.js"></script>
+</body>
+
+</html>

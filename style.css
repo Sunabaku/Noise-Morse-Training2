@@ -1,0 +1,142 @@
+/* ベースの設定（リセットとフォント） */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    background-color: #f8f9fa; /* わずかにグレーがかった白 */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* メインのコンテナとしての役割を div に持たせる */
+div:not(.hidden) {
+    background: #ffffff;
+    padding: 2rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* 柔らかい影 */
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* 非表示クラス */
+.hidden {
+    display: none !important;
+}
+
+/* フォーム要素のレイアウト */
+#settings, #trainingGroup, #answerDisplayGroup, #resultGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* 要素間の余白 */
+}
+
+/* テキストやラベル */
+label, span, div {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* 入力フィールド（数値、テキスト） */
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border-color: #007aff; /* フォーカス時に青く光る */
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.1);
+}
+
+/* スライダー（range）のデザイン */
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: #e0e0e0;
+    border-radius: 5px;
+    outline: none;
+    margin-top: 0.5rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #007aff;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* ボタンのデザイン */
+button {
+    background-color: #007aff;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+button:active {
+    transform: scale(0.98); /* 押したときの沈み込み */
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 解答表示部分の強調 */
+#userAnsDisplay, #ansDisplay {
+    display: inline-block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007aff;
+    letter-spacing: 2px;
+    margin-top: 0.3rem;
+}
+
+#resultNum {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff3b30; /* 結果の数字はアクセントカラーで */
+}
+
+/* ふわっと表示されるアニメーション */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
