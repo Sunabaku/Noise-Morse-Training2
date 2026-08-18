@@ -276,7 +276,7 @@ function GenerateMorse(length=6){
                 morse[0] += values[firstIndex] + " ";
                 morse[1] += keys[firstIndex];
                 break;
-                //console.log("0 or 1 section called")
+                console.log("0 or 1 section called")
             case 2:
                 const numIndex = Math.floor(Math.random() * numDictSize);
                 morse[0] += numValues[numIndex] + " ";
