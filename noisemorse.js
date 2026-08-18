@@ -85,7 +85,7 @@ let audioCtx = null;
 let noiseNode = null;
 
 let userAnswer = "";
-let answer = "qqqqqq";
+let answer = "";
 
 let morse = null;
 let duration = 0; //信号の長さ(s)
@@ -112,6 +112,7 @@ ansSubmitButton.addEventListener("click",()=>{ //解答提出時処理
 function JudgeAns(ans,userAns){
     if(ans===userAns){
         return true;
+        console.log("correct");
     }
     else{
         return false;
@@ -126,13 +127,17 @@ startButton.addEventListener("click",()=>{ //開始時処理
     frequency = frequencySettingInput.value;
 
     morse = GenerateMorse(6);
+    answer = morse[1];
 })
 
 nextButton.addEventListener("click",()=>{ //次の問題に進むときの処理
     answerDisplayGroup.classList.add("hidden");
     ansSubmitButton.classList.remove("hidden");
     morse = GenerateMorse(6);
+    answer = morse[1];
+
     currentProblemNum++;
+    console.log(morse[0],morse[1])
 
     if(currentProblemNum >= problemNum){
         resultGroup.classList.remove("hidden");
@@ -160,8 +165,7 @@ async function HandlePlayClick() {
     playbtn.disabled = true;
 
     const duration = PlayMorseCode(morse[0]);
-    answer = morse[1];
-
+    
     PlayNoise();
     console.log(morse);
 
@@ -272,7 +276,7 @@ function GenerateMorse(length=6){
                 morse[0] += values[firstIndex] + " ";
                 morse[1] += keys[firstIndex];
                 break;
-                console.log("0 or 1 section called")
+                //console.log("0 or 1 section called")
             case 2:
                 const numIndex = Math.floor(Math.random() * numDictSize);
                 morse[0] += numValues[numIndex] + " ";
