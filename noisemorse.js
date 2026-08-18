@@ -51,7 +51,20 @@ const morseDict = {
     "X": "-..-",
     "Y": "-.--",
     "Z": "--..",
-    "/": "-..-.",
+    //"/": "-..-.",
+    "1": ".----",
+    "2": "..---",
+    "3": "...--",
+    "4": "....-",
+    "5": ".....",
+    "6": "-....",
+    "7": "--...",
+    "8": "---..",
+    "9": "----.",
+    "0": "-----"
+};
+
+const morseNumDict = {
     "1": ".----",
     "2": "..---",
     "3": "...--",
@@ -72,7 +85,7 @@ let audioCtx = null;
 let noiseNode = null;
 
 let userAnswer = "";
-let answer = "";
+let answer = "qqqqqq";
 
 let morse = null;
 let duration = 0; //信号の長さ(s)
@@ -113,7 +126,6 @@ startButton.addEventListener("click",()=>{ //開始時処理
     frequency = frequencySettingInput.value;
 
     morse = GenerateMorse(6);
-    
 })
 
 nextButton.addEventListener("click",()=>{ //次の問題に進むときの処理
@@ -237,14 +249,40 @@ function PlayMorseCode(codeString){
 
 function GenerateMorse(length=6){
     const dictSize = Object.keys(morseDict).length;
-    let morse = ["          ",""];
+    const numDictSize = Object.keys(morseNumDict).length;
+
+    let morse = ["          ",""]; //再生開始を遅らせるためにスペースを挿入
+
     const values = Object.values(morseDict);
     const keys = Object.keys(morseDict);
 
+    const numValues = Object.values(morseNumDict);
+    const numKeys = Object.keys(morseNumDict);
+
     for(let i=0; i<length; i++){
-        const index = Math.floor(Math.random() * dictSize);
-        morse[0] += values[index] + " ";
-        morse[1] += keys[index];
+        switch(i){
+            case 0:
+            case 1:
+                const firstIndex = Math.floor(Math.random() * dictSize);
+                const key = keys[firstIndex];
+                if(key == "Q" || key == "0" || key == "1"){
+                    i--;
+                    continue;
+                }
+                morse[0] += values[firstIndex] + " ";
+                morse[1] += keys[firstIndex];
+                break;
+                console.log("0 or 1 section called")
+            case 2:
+                const numIndex = Math.floor(Math.random() * numDictSize);
+                morse[0] += numValues[numIndex] + " ";
+                morse[1] += numKeys[numIndex];
+                break;
+            default:
+                const normalIndex = Math.floor(Math.random() * dictSize);
+                morse[0] += values[normalIndex] + " ";
+                morse[1] += keys[normalIndex];
+        }
     }
     return morse;
 }
